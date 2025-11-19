@@ -188,12 +188,12 @@ Frontend disponível em:
 #### 📱 UI responsiva em Tailwind
 
 
-# 👨‍💻 Autor
+## 👨‍💻 Autor
 
-### Kayan Marques Barreto
+#### Kayan Marques Barreto
 
-### 🔗 GitHub: https://github.com/Kayanbarreto
+#### 🔗 GitHub: https://github.com/Kayanbarreto
 
-### 🔗 LinkedIn: [https://www.linkedin.com/in/SEU-LINK](https://www.linkedin.com/in/kayan-barreto-39a330265/)
+#### 🔗 LinkedIn: [https://www.linkedin.com/in/SEU-LINK](https://www.linkedin.com/in/kayan-barreto-39a330265/)
 
-### 📧 Email: kayan.marques.barreto@ccc.ufcg.edu.br
+#### 📧 Email: kayan.marques.barreto@ccc.ufcg.edu.br
