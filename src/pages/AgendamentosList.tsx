@@ -131,6 +131,7 @@ function AgendamentosList() {
       <ul className="space-y-4">
         {agendamentos.map((item) => (
           <li key={item.id} className="border p-4 rounded shadow-sm bg-white">
+            <p><strong>Id:</strong> {item.id}</p>
             <p><strong>Nome:</strong> {item.nome}</p>
             <p><strong>Serviço:</strong> {item.servico}</p>
             <p><strong>Data:</strong> {item.data}</p>

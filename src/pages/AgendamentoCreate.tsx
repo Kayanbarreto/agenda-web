@@ -59,7 +59,7 @@ function AgendamentoCreate() {
 
         <input
           type="text"
-          placeholder="Data (dd-mm-aaaa)"
+          placeholder="Data (dd/mm/aaaa)"
           value={data}
           onChange={(e) => setData(e.target.value)}
           className="border p-2 block w-full"
