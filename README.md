@@ -204,6 +204,30 @@ Frontend disponível em:
 
     O frontend faz requisições para http://localhost:3333 através do arquivo src/services/api.ts
 
+## ▶️ Como rodar o projeto (se já estiver com as dependencias já configuradas)
+
+Assumindo que você já possui todas as dependências instaladas (Node, Docker, dependências do projeto):
+
+NO BACKEND INICIALMENTE
+1. **Subir banco de dados (PostgreSQL + pgAdmin via Docker)**
+
+```bash
+cd dbDocker
+docker compose up -d
+```
+
+2. Iniciar o backend
+```bash
+cd ../agenda-backend
+npm run dev
+```
+
+3. Iniciar o frontend
+```bash
+cd ../agenda-web
+npm run dev
+```
+Frontend disponível em: http://localhost:5173
 
 # 📡 Endpoints da API
 | Método | Rota                | Descrição             |
