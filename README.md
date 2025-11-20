@@ -17,7 +17,8 @@ O projeto consiste em um sistema simples de **agendamento de serviços**, conten
 - Express  
 - TypeScript  
 - Prisma ORM  
-- PostgreSQL  
+- PostgreSQL
+- Docker & Docker Compose  
 - ts-node-dev  
 - Validação manual com RegEx  
 - Arquitetura simples baseada em rotas
@@ -42,7 +43,7 @@ O projeto consiste em um sistema simples de **agendamento de serviços**, conten
 - **DELETE /agendamentos/:id** → exclui um agendamento  
 - **Validações avançadas**:
   - Campos obrigatórios  
-  - Formato da data `dd-mm-aaaa`  
+  - Formato da data `dd/mm/aaaa`  
   - Formato da hora `hh:mm`  
   - Bloqueio de datas passadas  
 - Conexão com PostgreSQL via Prisma
@@ -75,6 +76,8 @@ O projeto consiste em um sistema simples de **agendamento de serviços**, conten
 ### **agenda-backend/**
 ```bash
 agenda-backend/
+├── dbDocker/
+│   └── docker-compose.yml 
 ├── prisma/
 │   └── schema.prisma
 ├── src/
@@ -102,6 +105,23 @@ agenda-web/
 ├── tailwind.config.js
 └── package.json
 ```
+
+## 🌳 Local do .env (Backend)
+
+O arquivo .env deve ser criado na raiz da pasta agenda-backend/, no mesmo nível de:
+```
+agenda-backend/
+├── .env          # ✅ aqui
+├── docker-compose.yml
+├── prisma/
+├── src/
+└── package.json
+```
+Conteúdo do .env
+```bash
+DATABASE_URL="postgresql://postgres:skdpo1425@localhost:5432/agenda_db?schema=public"
+```
+
 # 🛠 Como Rodar o Projeto
 
 ## 📌 1. Clonar os repositórios
@@ -111,54 +131,79 @@ git clone https://github.com/Kayanbarreto/agenda-backend.git
 git clone https://github.com/Kayanbarreto/agenda-web.git
 ```
 
-## ⚙️ Backend
-### 🔹 Instalar dependências
+## ⚙️ 2. Backend (API + Banco em Docker)
+### 🔹 2.1 Entrar na pasta do backend
+```
+cd agenda-backend
+```
+### 🔹 2.2 Criar o arquivo .env
+```
+# agenda-backend/.env
+DATABASE_URL="postgresql://postgres:skdpo1425@localhost:5432/agenda_db?schema=public"
+```
+### 🔹 2.3 Subir o Postgres + pgAdmin com Docker
+
+O arquivo `docker-compose.yml` (no diretório dbDocker) contém os serviços:
+
+`db` (PostgreSQL)
+
+`pgadmin` (interface gráfica opcional)
+
+### Subir os containers:
+```
+# agenda-backend/  
+docker compose up -d
+```
+  Postgres estará disponível em localhost:5432
+  pgAdmin em http://localhost:5050
+
+    Email: admin@admin.com
+    Senha: skdpo1425
+    
+### 🔹 2.4 Instalar dependências do backend
 
 ```bash
-cd agenda-backend
+# agenda-backend/
 npm install
 ```
-### 🔹 Configurar banco (PostgreSQL)
 
-Criar o banco:
-```bash
-CREATE DATABASE agenda_db;
+### 🔹 2.5 Rodar Prisma (migrations + client)
 ```
-
-Criar o arquivo .env:
-```bash
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/agenda_db?schema=public"
-```
-
-
-### 🔹 Rodar Prisma
-```bash
 npx prisma migrate dev --name init
 npx prisma generate
 ```
-### 🔹 Iniciar API
-```bash
+
+### 🔹 2.6 Iniciar API
+```
 npm run dev
 ```
 
 API disponível em:
+
 👉 http://localhost:3333
 
-## 🎨 Frontend
-### 🔹 Instalar dependências
-```bash
+## 🎨 3. Frontend
+
+###🔹 3.1 Entrar na pasta do frontend
+```
 cd agenda-web
+```
+
+### 🔹 3.2 Instalar dependências
+```
 npm install
 ```
 
-### 🔹 Iniciar aplicação React
-```bash
+### 🔹 3.3 Iniciar aplicação React
+```
 npm run dev
 ```
 
-
 Frontend disponível em:
-👉 http://localhost:5173
+  👉 http://localhost:5173
+
+    O frontend faz requisições para http://localhost:3333 através do arquivo src/services/api.ts
+
 
 # 📡 Endpoints da API
 | Método | Rota                | Descrição             |
